@@ -35,8 +35,7 @@ app.get("/api/fruit/all", (req: Request, res: Response) => {
 
         return res.json(db);
     }
-    return
-
+    return res.status(400);
 
 });
 
