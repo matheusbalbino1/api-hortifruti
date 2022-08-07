@@ -27,26 +27,16 @@ app.use((req: Request, res: Response, next: any) => {
     next();
 })
 
-const delay = 0;
 const db: dbProps[] = require("./db.json");
 
 app.get("/api/fruit/all", (req: Request, res: Response) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://matheusbalbino1.github.io/eccomerce-hortifruti/")
-    setTimeout(() => {
+
+    if (req.params.Origin === "https://matheusbalbino1.github.io") {
+
         return res.json(db);
-    }, delay);
+    }
+    return
 
-});
-
-app.get("/api/fruit/:id", (req: Request, res: Response) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://matheusbalbino1.github.io/")
-    const params = req.params.id;
-
-    const fruit = db.filter((fruta) => { return fruta.id == Number(params) })
-
-    setTimeout(() => {
-        return res.status(200).send(JSON.stringify(fruit))
-    }, delay);
 
 });
 
