@@ -1,7 +1,8 @@
-import {Request, Response} from "express";
+import {Request, response, Response} from "express";
 const express = require("express");
 const cors = require("cors");
 const app = express();
+
 
 interface dbProps{
     genus:string;
@@ -20,13 +21,17 @@ interface dbProps{
 
 
 app.use(express.json())
-app.use(cors());
+app.use((req:Request,res:Response, next:any)=>{
+    res.header("Acess-Control-Allow-Origin","");
+    app.use(cors());
+    next();
+})
 
 const delay = 0;
 const db:dbProps[] = require("./db.json");
 
 app.get("/api/fruit/all", (req: Request, res: Response) => {
-
+    res.setHeader("Access-Control-Allow-Origin", "https://matheusbalbino1.github.io/eccomerce-hortifruti")
     setTimeout(()=>{
         return res.json(db);
     }, delay);
