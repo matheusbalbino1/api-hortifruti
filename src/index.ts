@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-
+const URL = process.env.URL || "*"
 interface dbProps {
     genus: string;
     name: string;
@@ -28,10 +28,8 @@ const db: dbProps[] = require("./db.json");
 
 app.get("/api/fruit/all", (req: Request, res: Response) => {
 
-
+    res.header("Access-Control-Allow-Origin", URL)
     return res.json(db).status(400);
-
-
 
 });
 
