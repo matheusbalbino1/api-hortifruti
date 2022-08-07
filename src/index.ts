@@ -31,7 +31,7 @@ const delay = 0;
 const db:dbProps[] = require("./db.json");
 
 app.get("/api/fruit/all", (req: Request, res: Response) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://matheusbalbino1.github.io/eccomerce-hortifruti")
+    res.setHeader("Access-Control-Allow-Origin", "https://matheusbalbino1.github.io/eccomerce-hortifruti/")
     setTimeout(()=>{
         return res.json(db);
     }, delay);
