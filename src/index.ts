@@ -1,4 +1,4 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -21,21 +21,17 @@ interface dbProps {
 
 
 app.use(express.json())
-app.use((req: Request, res: Response, next: any) => {
-    res.header("Acess-Control-Allow-Origin", "");
-    app.use(cors());
-    next();
-})
+app.use(cors());
+
 
 const db: dbProps[] = require("./db.json");
 
 app.get("/api/fruit/all", (req: Request, res: Response) => {
 
-    if (req.params.Origin === "https://matheusbalbino1.github.io") {
 
-        return res.json(db);
-    }
-    return res.status(400);
+    return res.json(db).status(400);
+
+
 
 });
 
